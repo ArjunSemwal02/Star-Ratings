@@ -1,3 +1,27 @@
 .ratings-container{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 2px solid darkred;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.emptyStar::before{
+    content: '';
+    cursor: pointer;
+}
+
+.filledStar::before{
+    content: '';
+    cursor: pointer;
+}
+
+.stars img{
+    width: 1rem;
+    display: none;
 }
