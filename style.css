@@ -1,4 +1,4 @@
-.ratings-container{
+.ratings{
     position: absolute;
     top: 20%;
     left: 50%;
@@ -11,17 +11,21 @@
     padding: 2rem;
 }
 
-.emptyStar::before{
+/* .emptyStar::before{
     content: '';
     cursor: pointer;
-}
+} */
 
-.filledStar::before{
+/* .filledStar::before{
     content: '';
     cursor: pointer;
-}
+} */
 
-.stars img{
+.empty img{
+    width: 1rem;
+    display: none;
+}
+.filled img{
     width: 1rem;
     display: none;
 }
