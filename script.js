@@ -9,22 +9,6 @@ const storedQuestions = JSON.parse(localStorage.getItem('storedQuestions'));
 
 const questions = initialQuestions || storedQuestions;
 
-const makeStars = (maxValue, question) => {
-    const starContainer = document.createElement('div');
-
-    for( let starPosition = 1; starPosition < maxValue; starPosition++){
-        const starElement = document.createElement('span');
-        starContainer.appendChild(starElement);
-
-        if(starPosition <= question.rating)     
-            starElement.classList.add('filled');
-        else    
-            starElement.classList.add('empty');
-
-        return starContainer;
-    }
-}
-
 const makeStarRating = question => {
     const container = document.createElement('div');
     const label = document.createElement('label');
@@ -35,7 +19,42 @@ const makeStarRating = question => {
     return container;
 }
 
-const ratingElement = document.getElementsByClassName('ratings');
+const makeStars = (maxValue, question) => {
+    const starContainer = document.createElement('div');
+
+    for( let starPosition = 1; starPosition <= maxValue; starPosition++){
+        const starElement = document.createElement('span');
+        starContainer.appendChild(starElement);
+
+        if(starPosition <= question.rating)     
+            starElement.classList.add('filled');
+        else    
+            starElement.classList.add('empty');
+
+
+        starElement.onclick = () => {
+            for( let i = 0; i < maxValue; i++ ){
+                if( i < starPosition ){
+                    starContainer.children[i].classList.add('filled');
+                }
+                else{
+                    starContainer.children[i].classList.remove('filled');
+                    starContainer.children[i].classList.add('empty');
+                }
+                    
+            }
+
+            question.rating = starPosition;
+            localStorage.setItem('storedQuestions', JSON.stringify(questions));
+        }
+    }
+
+    return starContainer;
+}
+
+
+
+const ratingElement = document.getElementById('ratings');
 
 questions.forEach(question => {
     ratingElement.appendChild(makeStarRating(question));
