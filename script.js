@@ -2,10 +2,14 @@ const initialQuestions = [
     {
         label: 'Problem Solving',
         rating: 0
-    }
+    },
+    {
+        label: 'Cognitive thinking',
+        rating: 0,
+    },
 ]
 
-const storedQuestions = JSON.parse(localStorage.getItem('storedQuestions'));
+const storedQuestions = JSON.parse(localStorage.getItem("storedQuestions"));
 
 const questions = initialQuestions || storedQuestions;
 
@@ -26,10 +30,8 @@ const makeStars = (maxValue, question) => {
         const starElement = document.createElement('span');
         starContainer.appendChild(starElement);
 
-        if(starPosition <= question.rating)     
-            starElement.classList.add('filled');
-        else    
-            starElement.classList.add('empty');
+        if(starPosition <= question.rating)     starElement.classList.add('filled');
+        else    starElement.classList.add('empty');
 
 
         starElement.onclick = () => {
@@ -45,7 +47,7 @@ const makeStars = (maxValue, question) => {
             }
 
             question.rating = starPosition;
-            localStorage.setItem('storedQuestions', JSON.stringify(questions));
+            localStorage.setItem("storedQuestions", JSON.stringify(questions));
         }
     }
 
@@ -58,4 +60,4 @@ const ratingElement = document.getElementById('ratings');
 
 questions.forEach(question => {
     ratingElement.appendChild(makeStarRating(question));
-})
+});
